@@ -25,7 +25,7 @@ def api_call(file):
         template = f.read()
     # start requests
     url = "https://openrouter.ai/api/v1/chat/completions"
-    key = "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"
+    key = ""
     headers = {
     "Authorization": f"Bearer {key}",
     "Content-Type": "application/json"
@@ -78,4 +78,4 @@ if __name__ == "__main__":
     answer = api_call(file)
     print(answer)
 
-# API-KEY: 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
+# API-KEY: 
