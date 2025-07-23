@@ -1,43 +1,26 @@
-{
-    "type" : "object",
-    "properties" : {
-        "company" : {"type" : "string"},
-        "village" : {"type" : "string"},
-        "location" : {
-            "type" : "object",
-            "properties" : {
-                "longitude" : {"type" : "number"},
-                "latitude" : {"type" : "number"}
-            },
-            "required" : ["longitude", "latitude"]
-        },
-        "timeline" : {
-            "type" : "object",
-            "properties" : {
-                "end_date" : {"type" : "number"},
-                "start_date" : {"type" : "number"},
-                "duration" : {"type" : "number"} 
-            }
-        },
-        "finance" : {
-            "type" : "object",
-            "properties" : {
-                "capex" : {"type" : "number"},
-                "opex" : {"type" : "number"},
-                "sus_plan" : {"type" : "string"},
-                "total_cost" : {"type" : "string"}
-            },
-            "required" : ["capex", "opex"]
-        },
-        "impact" : {
-            "type" : "object",
-            "properties" : {
-                "num_houses" : {"type" : "number"},
-                "co2" : {"type" : "number"},
-                "pue" : {"type" : "string"},
-                "ppl" : {"type" : "number"}
-            }
-        }
+{  
+    "company" : {"type" : "string"},
+    "village" : {"type" : "string"},
+    "location" : {
+        "longitude" : {"type" : "number"},
+        "latitude" : {"type" : "number"}
+    },   
+    "timeline" : {
+        "end_date" : {"type" : "number"},
+        "start_date" : {"type" : "number"},
+        "duration" : {"type" : "number"} 
     },
-    "required" : ["impact", "company", "location", "village", "timeline", "finance", "impact"]
+    "finance" : {     
+        "capex" : {"type" : "number"},
+        "opex" : {"type" : "number"},
+        "sus_plan" : {"type" : "string"},
+        "total_cost" : {"type" : "string"}
+    },
+    "impact" : {
+        "type" : "object",
+        "num_houses" : {"type" : "number"},
+        "co2" : {"type" : "number"},
+        "pue" : {"type" : "string"},
+        "ppl" : {"type" : "number"}
+        }
 }
