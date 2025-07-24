@@ -35,23 +35,19 @@ def api_call(file):
     }
     prompt = f"""
 
-You are acting on the behalf of a rural electrification financier. In this role, you will be 
-identifying various aspects of a rural energy access project proposal to aid them in their work.
-    
 Here is the proposal you will be analyzing: {text}
 
-In this proposal, you must idenitfy the following components: 
-- company name, village name, longitude and latitude coordinates, the technical solution(s) used to 
-provide renewable energy 
-- project completion date, start date, and the project duration, 
-- the capital expenditures (capex), operational expenditures (opex), financing structure, 
-longterm sustainability plan, and the total funding required of the financier you work for. 
-- # of households affected, carbon emission avoided (co2), proposed productive uses of energy (pue) as 
-a result of the project, and the number of people estimated to be impacted.
+In this proposal, you must idenitfy the following components described here : {template}
 
-Please present this information according to the following schema {template}
+Please return the following filled-in template **as valid JSON**, enclosed in curly braces and using double quotes. 
+Use `null` instead of `None`. Do not include 'value :'. For example, for the location, I want the template to be populated as such:
 
-If there is insufficient information -- just leave it out. 
+If there is no information to populate a certain key, put the value as null. Do not put the value as None. 
+
+Return **ONLY** the populated template -- nothing else. Even at the begginnning, do not put "here is the populated template. 
+I only want the JSON template.   
+
+Thank you.
 
 """ 
     data = {
@@ -71,12 +67,14 @@ identifying various aspects of a rural energy access project proposal to aid the
         ]
     }
     answer = requests.post(url, headers=headers, json=data)
+    
     response = answer.json()["choices"][0]["message"]["content"]
-
     return response
     
-if __name__ == "__main__":
-    # load pdf
+def main():
     file = "sampledoc.pdf"
     answer = api_call(file)
-    print(answer)
+    return answer
+
+if __name__ == "__main__":
+   print(main())

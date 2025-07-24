@@ -1,26 +1,26 @@
-{  
-    "company" : {"type" : "string"},
-    "village" : {"type" : "string"},
+
+
+{   "company" : {"value" : "name of the company as a string"},
+    "village" : {"value" : "name of the village as a string"},
     "location" : {
-        "longitude" : {"type" : "number"},
-        "latitude" : {"type" : "number"}
+        "longitude" : {"value" : "longitudinal coordinates of the village as a number"},
+        "latitude" : {"value" : "latitudinal coordinates of the village as a number"}
     },   
     "timeline" : {
-        "end_date" : {"type" : "number"},
-        "start_date" : {"type" : "number"},
-        "duration" : {"type" : "end_date - start_date"} 
+        "end_date" : {"value" : "date when the project implementation is completed as a string"},
+        "start_date" : {"value" : "date when the project implementation begins as a string"},
+        "duration" : {"value" : "total duration between the start and end date as a number in total days"} 
     },
     "finance" : {     
-        "capex" : {"type" : "number"},
-        "opex" : {"type" : "number"},
-        "sus_plan" : {"type" : "string"},
-        "total_cost" : {"type" : "string"}
+        "capex" : {"value" : "project capital expenditures as a number"},
+        "opex" : {"value" : "project operational expenditures as a number"},
+        "sus_plan" : {"value" : "a description of their sustainability plan as a string"},
+        "total_cost" : {"value" : "total funding required by the project as a number"}
     },
     "impact" : {
-        "type" : "object",
-        "num_houses" : {"type" : "number"},
-        "co2" : {"type" : "number"},
-        "pue" : {"type" : "string"},
-        "ppl" : {"type" : "number"}
+        "num_houses" : {"value" : "number of houses in the village as a number"},
+        "co2" : {"value" : "number of co2 predicted emissions avoided as a number"},
+        "pue" : {"value" : "a description of the productive uses of energy the project hopes to bring as a string"},
+        "ppl" : {"value" : "number of people in the village as a number"}
         }
 }
