@@ -4,9 +4,7 @@ import json
 import requests
 import os
 from dotenv import load_dotenv
-
-load_dotenv(.env.backend)
-key = os.getenv("OPEN_API_KEY")
+load_dotenv()
 
 # turns file to JSON
 def extract_text(filepath):
@@ -25,12 +23,12 @@ def extract_text(filepath):
     return final_form
 
 def api_call(file):
+    key = os.getenv("OPEN_API_KEY")
     text = extract_text(file)
     with open("response.json", "r") as f:
         template = f.read()
     # start requests
     url = "https://openrouter.ai/api/v1/chat/completions"
-    key = "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"
     headers = {
     "Authorization": f"Bearer {key}",
     "Content-Type": "application/json"
@@ -82,5 +80,3 @@ if __name__ == "__main__":
     file = "sampledoc.pdf"
     answer = api_call(file)
     print(answer)
-
-# API-KEY: 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
