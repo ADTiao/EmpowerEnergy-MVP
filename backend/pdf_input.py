@@ -2,6 +2,11 @@
 import pdfplumber # type: ignore
 import json
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv(.env.backend)
+key = os.getenv("OPEN_API_KEY")
 
 # turns file to JSON
 def extract_text(filepath):
@@ -25,7 +30,7 @@ def api_call(file):
         template = f.read()
     # start requests
     url = "https://openrouter.ai/api/v1/chat/completions"
-    key = ""
+    key = "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"
     headers = {
     "Authorization": f"Bearer {key}",
     "Content-Type": "application/json"
@@ -78,4 +83,4 @@ if __name__ == "__main__":
     answer = api_call(file)
     print(answer)
 
-# API-KEY: 
+# API-KEY: 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

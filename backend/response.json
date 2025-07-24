@@ -8,7 +8,7 @@
     "timeline" : {
         "end_date" : {"type" : "number"},
         "start_date" : {"type" : "number"},
-        "duration" : {"type" : "number"} 
+        "duration" : {"type" : "end_date - start_date"} 
     },
     "finance" : {     
         "capex" : {"type" : "number"},
