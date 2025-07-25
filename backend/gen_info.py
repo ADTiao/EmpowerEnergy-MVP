@@ -49,9 +49,8 @@ feedback = {
     "ppl" : "the number of people impacted by your project is too low"
 }
 
-def get_prop(bool, basic_prop):
+def get_prop(bool, response, basic_prop):
     if bool == True:
-        response = llm_reply.main()
         llm_info = json.loads(response)
         return llm_info
     else:
@@ -82,14 +81,6 @@ def scoring(proposal, criteria, weights):
     end_score = (score/num_metric) * 100
     return math.trunc(end_score), prop_crit, null_crit
 
-def main():
-    bool = False
-    raw_prop_info = get_prop(bool, proposal)
-    prop_feedback = scoring(raw_prop_info, criteria, weights)
-    score = prop_feedback[0]
-    value_feedback = prop_feedback[1]
-    null_feedback = prop_feedback[2]
-    return score, value_feedback, null_feedback, raw_prop_info
 
 if __name__ == "__main__":
-    main()
+    scoring(proposal, criteria, weights)

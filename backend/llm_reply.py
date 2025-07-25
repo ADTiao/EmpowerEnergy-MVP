@@ -67,14 +67,10 @@ identifying various aspects of a rural energy access project proposal to aid the
         ]
     }
     answer = requests.post(url, headers=headers, json=data)
-    
+
     response = answer.json()["choices"][0]["message"]["content"]
     return response
     
-def main():
-    file = "sampledoc.pdf"
-    answer = api_call(file)
-    return answer
 
 if __name__ == "__main__":
-   print(main())
+    api_call("sampledoc.pdf")
