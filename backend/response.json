@@ -2,17 +2,17 @@
 
 {   "company" : {"value" : "name of the company", "type" : "string"},
     "village" : {"value" : "name of the village", "type" : "string"},
-    "longitude" : {"value" : "longitudinal coordinates of the village", "type" : "number"},
-    "latitude" : {"value" : "latitudinal coordinates of the village", "type" : "number"},   
+    "longitude" : {"value" : "longitudinal coordinates of the village", "type" : "int"},
+    "latitude" : {"value" : "latitudinal coordinates of the village", "type" : "int"},   
     "end_date" : {"value" : "date when the project implementation is completed", "type" : "string"},
     "start_date" : {"value" : "date when the project implementation begins", "type" : "string"},
-    "duration" : {"value" : "total amount of days between the start and end date", "type" : "number"},
-    "capex" : {"value" : "project capital expenditures", "type" : "number"},
-    "opex" : {"value" : "project operational expenditures", "type" : "number"},
+    "duration" : {"value" : "total amount of days between the start and end date", "type" : "int"},
+    "capex" : {"value" : "project capital expenditures", "type" : "int"},
+    "opex" : {"value" : "project operational expenditures", "type" : "int"},
     "sus_plan" : {"value" : "a description of their sustainability plan", "type" : "string"},
-    "total_cost" : {"value" : "total funding required by the project", "type" : "number"},
-    "num_houses" : {"value" : "number of houses in the village", "type" : "number"},
-    "co2" : {"value" : "number of co2 predicted emissions avoided", "type" : "number"},
+    "total_cost" : {"value" : "total funding required by the project", "type" : "int"},
+    "num_houses" : {"value" : "number of houses in the village", "type" : "int"},
+    "co2" : {"value" : "number of co2 predicted emissions avoided", "type" : "int"},
     "pue" : {"value" : "a description of the productive uses of energy the project hopes to bring", "type" : "string"},
-    "ppl" : {"value" : "number of people in the village", "type" : "number"}
+    "people" : {"value" : "number of people in the village", "type" : "int"}
 }

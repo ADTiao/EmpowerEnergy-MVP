@@ -1,6 +1,7 @@
 from backend import llm_reply
 from backend import gen_info
 from backend import gen_summary
+import os
 
 def main(file):
     basic_prop = gen_info.proposal
@@ -27,7 +28,8 @@ def main(file):
     # print(inv_feed)
 
 if __name__ == "__main__":
-    file = "sampledoc.pdf"
-    main(file)
+    dir = os.path.dirname(__file__)
+    filepath = os.path.join(dir, "sampledoc.pdf")
+    main(filepath)
 
 

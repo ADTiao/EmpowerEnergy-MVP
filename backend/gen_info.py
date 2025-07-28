@@ -15,7 +15,7 @@ proposal = {
     "num_houses" : 1000,
     "co2" : 1000,
     "pue" : "There will be many productive uses of energy",
-    "ppl" : 500
+    "people" : 500
 }
 
 criteria = {
@@ -25,7 +25,7 @@ criteria = {
     "total_cost" : 900,
     "num_houses" : 70,
     "co2" : 500,
-    "ppl" : 250
+    "people" : 250
 }
 
 weights = {
@@ -35,7 +35,7 @@ weights = {
     "total_cost" : .40,
     "num_houses" : .20,
     "co2" : .10,
-    "ppl" : .20
+    "people" : .20
 }
 
 feedback = {
@@ -45,12 +45,15 @@ feedback = {
     "total_cost" : "the total requested funds for your project are too high",
     "num_houses" : "the number of connections for your project is too low",
     "co2" : "the avoided co2 emissions projected for your project are too low",
-    "ppl" : "the number of people impacted by your project is too low"
+    "people" : "the number of people impacted by your project is too low"
 }
 
 def get_prop(bool, response, basic_prop):
     if bool == True:
-        llm_info = json.loads(response)
+        if response == None or response == "":
+            raise ValueError("LLM response is empty — cannot parse JSON.")
+        else:   
+            llm_info = json.loads(response)
         return llm_info
     else:
         return basic_prop
@@ -80,6 +83,5 @@ def scoring(proposal, criteria, weights):
     end_score = (score/num_metric) * 100
     return math.trunc(end_score), prop_crit, null_crit
 
-
 if __name__ == "__main__":
-    scoring(proposal, criteria, weights)
+    (scoring(proposal, criteria, weights))

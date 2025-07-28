@@ -1,0 +1,17 @@
+{
+    "company": "write company here here if available",
+    "village": "write village here if available",
+    "longitude": -17.91782,
+    "latitude": 30.90988,
+    "end_date": "write date here if available",
+    "start_date": "write date here if available",
+    "duration": 1,
+    "capex": 1,
+    "opex": 1,
+    "sus_plan": "write the sustainability plan here if there is sufficient data",
+    "total_cost": 1,
+    "num_houses": 1,
+    "co2": 1,
+    "pue": "write the productive uses of energy here if there is sufficient, relevant data",
+    "people": 1
+  }

@@ -25,10 +25,15 @@ def extract_text(filepath):
 def api_call(file):
     key = os.getenv("OPEN_API_KEY")
     text = extract_text(file)
+    text = text[:5000]
     file_dir = os.path.dirname(__file__)
-    file_path = os.path.join(file_dir, "response.json")
-    with open(file_path, "r") as f:
+    response_path = os.path.join(file_dir, "response.json")
+    with open(response_path, "r") as f:
         template = f.read()
+    desired_dir = os.path.dirname(__file__)
+    desired_path = os.path.join(desired_dir, "desired_output.json")
+    with open(desired_path, "r") as d:
+        example = d.read()
     # start requests
     url = "https://openrouter.ai/api/v1/chat/completions"
     headers = {
@@ -37,19 +42,35 @@ def api_call(file):
     }
     prompt = f"""
 
-Here is the proposal you will be analyzing: {text}
+You are given a project proposal. Your job is to extract the required information and return it as a valid JSON object.
 
-In this proposal, you must idenitfy the following components described here : {template}
+Below is a template that explains **what each key means** and what kind of value it should contain. This is for your reference only — you should NOT return the template itself.
 
-Please return the following filled-in template **as valid JSON**, enclosed in curly braces and using double quotes. 
-Use `null` instead of `None`. Do not include 'value :'. 
+---
 
-If there is no information to populate a certain key, put the value as null. Do not put the value as None. 
+KEY DESCRIPTIONS:
+{template}
 
-Return **ONLY** the populated template -- nothing else. Even at the begginnning, do not put "here is the populated template. 
-I only want the JSON template.   
+---
 
-Thank you.
+Rules:
+- Return a **flat JSON object** using only the keys described above.
+- Do **not** include `"value"` or `"type"` in the output.
+- Use **double quotes** around all strings.
+- Use `null` for any missing or unavailable values.
+- Do **not** include extra text, headings, or formatting like triple backticks (```).
+- Only return the JSON object — nothing else.
+
+Here is an example of a desired JSON output: 
+{example}
+
+This is simply an example of how the desired JSON output should be formatted, nothing more. 
+
+Here is the proposal:
+{text}
+
+Now return the desired JSON object:
+
 
 """ 
     data = {
@@ -63,7 +84,7 @@ identifying various aspects of a rural energy access project proposal to aid the
             """
             },
             {
-            "role " : "user", 
+            "role" : "user", 
             "content" : prompt
             }
         ]
@@ -75,4 +96,6 @@ identifying various aspects of a rural energy access project proposal to aid the
     
 
 if __name__ == "__main__":
-    api_call("sampledoc.pdf")
+    dir = os.path.dirname(__file__)
+    filepath = os.path.join(dir, "sampledoc.pdf")
+    print(api_call(filepath))
