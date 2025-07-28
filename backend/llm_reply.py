@@ -25,7 +25,9 @@ def extract_text(filepath):
 def api_call(file):
     key = os.getenv("OPEN_API_KEY")
     text = extract_text(file)
-    with open("response.json", "r") as f:
+    file_dir = os.path.dirname(__file__)
+    file_path = os.path.join(file_dir, "response.json")
+    with open(file_path, "r") as f:
         template = f.read()
     # start requests
     url = "https://openrouter.ai/api/v1/chat/completions"
@@ -40,7 +42,7 @@ Here is the proposal you will be analyzing: {text}
 In this proposal, you must idenitfy the following components described here : {template}
 
 Please return the following filled-in template **as valid JSON**, enclosed in curly braces and using double quotes. 
-Use `null` instead of `None`. Do not include 'value :'. For example, for the location, I want the template to be populated as such:
+Use `null` instead of `None`. Do not include 'value :'. 
 
 If there is no information to populate a certain key, put the value as null. Do not put the value as None. 
 
