@@ -19,11 +19,11 @@ def dev_feedback(score, null_feed, miss_feed):
    if num_null == 0 and num_miss == 0: 
         feedback = "Great Job!" 
    if num_null != 0:
-        null_script = "\nYour proposal did not include key pieces of information: \n"
+        null_script = "\nYour project did not include the following: \n"
         for i in range(num_null):
             null_script += f"     {i+1}) {null_feed[i]}"
    if num_miss != 0:
-        miss_script = "\nYour proposal did not meet the funding criteria in the following ways: \n"
+        miss_script = "\nYour project does not meet the funding criteria in the following ways: \n"
         for i in range(num_miss):
             miss_script += f"     {i+1}) {miss_feed[i]}"  
    if num_null != 0 or num_miss != 0:     
@@ -44,7 +44,7 @@ def inv_feedback(score, prop_info, null_feed, miss_feed):
 
 Please summarize the energy access proposal using the format and instructions below.
 Only use information explicitly provided in {prop_info}, {score}, {null_feed}, and {miss_feed}.
-Do not invent missing information. If any detail is unavailable, clearly write: "There is no information regarding [field]".
+Do not invent missing information. If any detail *from the proposal* is unavailable, clearly write: "There is no information regarding [field] in the proposal".
 Do not include this prompt or the template — only return the formatted summary.
 """
 

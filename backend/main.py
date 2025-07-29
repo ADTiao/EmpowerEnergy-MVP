@@ -29,7 +29,7 @@ def main(file):
 
 if __name__ == "__main__":
     dir = os.path.dirname(__file__)
-    filepath = os.path.join(dir, "sampledoc.pdf")
-    main(filepath)
+    filepath = os.path.join(dir, "..", "pdfs/Fake Proposal #1.pdf")
+    print(main(filepath))
 
 

@@ -39,13 +39,13 @@ weights = {
 }
 
 feedback = {
-    "duration" : "the duration of your project exceeds the requirement for our funding.",
-    "capex" : "the capital expenditures for your project are too high",
-    "opex" : "the operational expenditures for your project are too high",
-    "total_cost" : "the total requested funds for your project are too high",
-    "num_houses" : "the number of connections for your project is too low",
-    "co2" : "the avoided co2 emissions projected for your project are too low",
-    "people" : "the number of people impacted by your project is too low"
+    "duration" : "the duration of your project exceeds the expected cost of this type of project.",
+    "capex" : "the capital expenditures exceeds the expected cost of this type of project",
+    "opex" : "the operational expenditures exceeds the expected cost of this type of project",
+    "total_cost" : "the total requested funds exceeds the expected cost of this type of project",
+    "num_houses" : "the number of connections underperform for a typical project of this magnitude",
+    "co2" : "the avoided co2 emissions underperform for a typical project of this magnitude",
+    "people" : "the number of people underperform for a typical project of this magnitude"
 }
 
 def get_prop(bool, response, basic_prop):

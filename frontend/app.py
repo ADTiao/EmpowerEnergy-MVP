@@ -14,12 +14,9 @@ init_val = "Waiting to Analyze Document"
 # add button to upload a pdf file
 if file and analyze_clicked:
     analyze = gen(file)
-    inv_feed = st.text_area(label="Investor Feedback", value=analyze[0], height=300)
-    dev_feed = st.text_area(label="Developer Feedback", value=analyze[1], height=300)
+    inv_feed = st.text_area(label="Investor Feedback", value=analyze[0], height=500)
+    dev_feed = st.text_area(label="Developer Feedback", value=analyze[1], height=500)
 else: 
-    inv_feed = st.text_area(label="Investor Feedback", value=init_val, height=300)
-    dev_feed = st.text_area(label="Developer Feedback", value=init_val, height=300)
-
-
-
+    inv_feed = st.text_area(label="Investor Feedback", value=init_val, height=500)
+    dev_feed = st.text_area(label="Developer Feedback", value=init_val, height=500)
 
