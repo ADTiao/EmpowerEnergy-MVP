@@ -1,0 +1,46 @@
+{
+    "general": {
+      "company": "BrightPower Solutions Ltd",
+      "village": "Kakuma",
+      "start": "2024-01-15",
+      "longitude": 34.8917,
+      "latitude": 3.7072,
+      "energy_generated": 1250000
+    },
+  
+    "impact": {
+      "carbon": 850,
+      "connections": 350,
+      "women_consideration": true,
+      "track_women": 2,
+      "w_comm_prog": 3,
+      "pue": 4,
+      "econ_focus": 15
+    },
+  
+    "finance": {
+      "capex": 175000,
+      "opex": 55000,
+      "cpc": 500,
+      "lev_ratio": 1.5,
+      "tariff_type": "tiered",
+      "tariff": 0.25,
+      "lcoe": 0.184,
+      "requested_funds" : 109200
+    },
+  
+    "dev": {
+      "per_local_tech": 0.6
+    },
+  
+    "tech": {
+      "scalable": false,
+      "solution": "minigrid",
+      "monitering" : true,
+      "backup" : false
+    },
+  
+    "timeline": {
+      "dur": 365
+    }
+  }
