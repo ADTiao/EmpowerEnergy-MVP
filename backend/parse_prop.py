@@ -26,11 +26,11 @@ def api_call(file):
     key = os.getenv("OPEN_API_KEY")
     text = extract_text(file)
     file_dir = os.path.dirname(__file__)
-    response_path = os.path.join(file_dir, "full_template.json")
+    response_path = os.path.join(file_dir, "json/full_template.json")
     with open(response_path, "r") as f:
         template = f.read()
     desired_dir = os.path.dirname(__file__)
-    desired_path = os.path.join(desired_dir, "example.json")
+    desired_path = os.path.join(desired_dir, "json/example.json")
     with open(desired_path, "r") as d:
         example = d.read()
     # start requests

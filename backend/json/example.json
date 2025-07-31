@@ -21,7 +21,7 @@
     "finance": {
       "capex": 175000,
       "opex": 55000,
-      "cpc": 500,
+      "cpc": 3.5,
       "lev_ratio": 1.5,
       "tariff_type": "tiered",
       "tariff": 0.25,

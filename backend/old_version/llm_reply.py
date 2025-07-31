@@ -27,11 +27,11 @@ def api_call(file):
     text = extract_text(file)
     text = text[:5000]
     file_dir = os.path.dirname(__file__)
-    response_path = os.path.join(file_dir, "response.json")
+    response_path = os.path.join(file_dir, "json.response.json")
     with open(response_path, "r") as f:
         template = f.read()
     desired_dir = os.path.dirname(__file__)
-    desired_path = os.path.join(desired_dir, "desired_output.json")
+    desired_path = os.path.join(desired_dir, "json/desired_output.json")
     with open(desired_path, "r") as d:
         example = d.read()
     # start requests
@@ -94,7 +94,6 @@ identifying various aspects of a rural energy access project proposal to aid the
     response = answer.json()["choices"][0]["message"]["content"]
     return response
     
-
 if __name__ == "__main__":
     dir = os.path.dirname(__file__)
     filepath = os.path.join(dir, "sampledoc.pdf")
