@@ -7,8 +7,6 @@ import AnalyzeInfo from './components/analyze'
 
 
 function App() {
-  const [file, setFile] = useState(null)
-
   // ---------- WEIGHTS/CRITERIA --------
 
   metrics = [

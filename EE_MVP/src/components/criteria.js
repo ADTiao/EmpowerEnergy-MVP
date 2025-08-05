@@ -7,7 +7,7 @@ async function handleCrit(category, metric, val) {
         "metric" : metric,
         "val" : val
     }
-    try { const response = await fetch("url", {
+    try { const response = await fetch("https://localhost:8000", {
         method : "POST",
         headers : {"Content-Type" : "application/json"},
         body : JSON.stringify(info)
@@ -16,11 +16,9 @@ async function handleCrit(category, metric, val) {
             throw new Error("information not registered")
         }
         const data = await response.json()
-        console.log(data)
         if (!data.message) {
             throw new Error("Something went wrong")
         }
-        else { console.log("all good with parsing data")}
     } catch (error) {
         console.error("Something went wrong: ", error)
 

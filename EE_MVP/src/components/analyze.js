@@ -6,7 +6,7 @@ function GetScores() {
 
     async function handleResponse() {
         try {
-            const response = await fetch("http://localhost:8000/analyze", {
+            const response = await fetch("http://localhost:8000", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

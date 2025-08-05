@@ -8,7 +8,7 @@ function UploadForm() {
         form.append("file", file)
         // send request
         try {
-          const response = await fetch("url", {
+          const response = await fetch("https://localhost:8000", {
           method : "POST",
           body : form
           });

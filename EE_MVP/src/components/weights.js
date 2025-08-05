@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 
 async function handleWeight(category, weight, metric){
-  console.log(category, weight, metric);
   const info = {
       "category" : category,
       "metric" : metric,
       "weight" : weight
   }
-  try { const response = await fetch("url", {
+  try { const response = await fetch("https://localhost:8000", {
       method : "POST",
       headers : {"Content-Type" : "application/json"},
       body : JSON.stringify(info)
@@ -15,15 +14,11 @@ async function handleWeight(category, weight, metric){
       if (!response.ok) {
           throw new Error("information not registered")
       }
-      else {
-          console.log("information registered")
-      }
       const data = await response.json()
       console.log(data)
       if (!data.message) {
           throw new Error("Something went wrong")
       }
-      else { console.log("all good with parsing response")}
   
   } catch (error) {
       console.error("Something went wrong: ", error)
