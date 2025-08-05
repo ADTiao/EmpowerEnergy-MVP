@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/Users/aarontiao/Downloads/Imex/EmpowerEnergy-MVP/venv/bin/python"
+    "python.pythonPath": "/Users/aarontiao/Downloads/Imex/EmpowerEnergy-MVP/venv/bin/python",
+    "python.analysis.extraPaths": ["./"]
 }
