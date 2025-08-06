@@ -11,7 +11,7 @@ help_dict = {
     "opex": "range",
     "cpc": "range",
     "lev_ratio": "greater",
-    "tarrif": "range",
+    "tariff": "range",
     "lcoe": "range",
     "requested_funds": "range",
     "per_local_tech": "greater",
@@ -19,7 +19,7 @@ help_dict = {
     "solution": "bool_string",
     "monitering": "bool",
     "backup": "bool",
-    "dur": "range"
+    "duration": "range"
 }
 label_dict = {
     "carbon": "carbon emissions avoided",
@@ -33,7 +33,7 @@ label_dict = {
     "opex": "OPEX",
     "cpc": "CPC",
     "lev_ratio": "leverage ratio",
-    "tarrif": "tarrif cost",
+    "tariff": "tariff cost",
     "lcoe": "lcoe",
     "requested_funds": "requested funds",
     "per_local_tech": "percent of local technicians",
@@ -41,7 +41,7 @@ label_dict = {
     "solution": "energy solution",
     "monitering": "a remote monitering system",
     "backup": "backup generation",
-    "dur": "duration"
+    "duration": "duration"
     }
 example_metrics = {
     "general": {
@@ -86,7 +86,7 @@ example_metrics = {
     },
   
     "timeline": {
-      "dur": 365
+      "duration": 365
     }
 }
 
@@ -200,11 +200,11 @@ if __name__ == "__main__":
     mock_impact = {'carbon': [230, 300], 'connections': 150, 'women_consideration': True, 
               'track_women': 3, 'w_comm_prog': 2, 'pue': 5, 'econ_focus': 4}  
     mock_finance = {'capex': [50000, 300000], 'opex': [15000, 30000], 'cpc': [0.5, 4.0], 
-               'lev_ratio': 2, 'tarrif_type': 'mixed_tier', 'tarrif': [0, 3.5], 'lcoe': [0.2, 0.4], 
+               'lev_ratio': 2, 'tariff': 'mixed_tier', 'tariff': [0, 3.5], 'lcoe': [0.2, 0.4], 
                'requested_funds': [0, 190000]} 
     mock_dev = {'per_local_tech': 75.0} 
     mock_tech = {'scalable': True, 'solution': 'mini grid', 'monitering': True, 'backup': True} 
-    mock_timeline = {'dur': [100, 366]}
+    mock_timeline = {'duration': [100, 366]}
     
     # ------------ MOCK WEIGHTS ------------
     mock_categ_weights = {
@@ -242,7 +242,7 @@ if __name__ == "__main__":
         "backup" : .1
     }
     mock_timeline_weights = {
-        "dur": 1
+        "duration": 1
     }
 
     eval = main(example_metrics, mock_impact, mock_finance, mock_dev, mock_tech, mock_timeline, mock_impact_weights,

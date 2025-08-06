@@ -1,10 +1,10 @@
 # from backend.services.funder import impact_dict, finance_dict, dev_dict, tech_dict, timeline_dict
 # from backend.services.funder import category_weights, impact_weights, finance_weights, dev_weights, tech_weights, timeline_weights
-from backend.info import info as final
+# from backend.info import info as final
 from backend.services.evaluate import main as evaluate
 
 # will be used after user clicks analyze and info dictionary has been completely filled
-def analyze():
+def analyze(final):
     for key in final:
         if key == "proposal":
             proposal = final[key]
@@ -45,11 +45,11 @@ def analyze():
     category_scores = info[1]
     
     score = info[0]
-    impact_score = category_scores[0]
-    finance_score = category_scores[1]
-    dev_score = category_scores[2]
-    tech_score = category_scores[3]
-    timeline_score = category_scores[4]
+    impact_score = category_scores["impact"]
+    finance_score = category_scores["finance"]
+    dev_score = category_scores["dev"]
+    tech_score = category_scores["tech"]
+    timeline_score = category_scores["timeline"]
     feedback = info[2]
 
     output = {

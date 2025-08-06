@@ -1,15 +1,14 @@
-import { useState } from 'react'
+import React from 'react'
 import './App.css'
 import UploadFile from './components/upload'
 import CriteriaOptions from './components/criteria'
 import WeightDropdown from './components/weights'
 import AnalyzeInfo from './components/analyze'
 
-
 function App() {
   // ---------- WEIGHTS/CRITERIA --------
 
-  metrics = [
+  const metrics = [
     {category : "impact", name : "carbon", type : "range"},
     {category : "impact", name : "connections", type : "int"},
     {category : "impact", name : "women_consideration", type : "bool"},
@@ -22,8 +21,8 @@ function App() {
     {category : "finance", name : "opex", type : "range"},
     {category : "finance", name : "cpc", type : "range"},
     {category : "finance", name : "lev_ratio", type : "int"},
-    {category : "finance", name : "tarrif_type", type : "string"},
-    {category : "finance", name : "tarrif", type : "range"},
+    {category : "finance", name : "tariff_type", type : "string"},
+    {category : "finance", name : "tariff", type : "range"},
     {category : "finance", name : "lcoe", type : "range"},
     {category : "finance", name : "requested_funds", type : "range"},
 
@@ -36,7 +35,7 @@ function App() {
 
     {category : "timeline", name : "duration", type : "range"},
   ]
-  weights = [
+  const weights = [
    
     {category : "grand", name : "impact"},
     {category : "grand", name : "finance"},
@@ -56,8 +55,8 @@ function App() {
     {category : "finance", name : "opex"},
     {category : "finance", name : "cpc"},
     {category : "finance", name : "lev_ratio"},
-    {category : "finance", name : "tarrif_type"},
-    {category : "finance", name : "tarrif"},
+    {category : "finance", name : "tariff_type"},
+    {category : "finance", name : "tariff"},
     {category : "finance", name : "lcoe"},
     {category : "finance", name : "requested_funds"},
 
@@ -73,12 +72,26 @@ function App() {
 
   return (
     <>
-        <title> EMPOWER ENERGY MVP </title>
-        <h1> This is a draft of the EmpowerEnergy MVP </h1>
+        <h1>EmpowerEnergy MVP</h1>
+        <p> This is a draft of the EmpowerEnergy MVP </p>
+        <hr />
+        <h2>Upload Proposal PDF</h2>
         <UploadFile/>
+        <hr />
+        <hr />
+        <hr />
+        <h2>Input Desired Criteria</h2>
         <CriteriaOptions metrics={metrics}/>
+        <hr />
+        <hr />
+        <hr />
+        <h2>Input Desired Weights</h2>
         <WeightDropdown weights={weights}/>
+        <hr />
+        <hr />
+        <hr />
         <AnalyzeInfo/>
+        
     </>
   )
 }

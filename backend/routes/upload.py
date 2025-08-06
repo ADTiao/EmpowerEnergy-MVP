@@ -9,7 +9,7 @@ router = APIRouter()
 async def upload_pdf(file: UploadFile = File(...)):
     if file.content_type != "application/pdf":
         return JSONResponse(content="Incorrect submission type", status_code=400)
-    contents = await file.read()
+    contents = file.file
     response = await parse_prop.api_call(contents)
     info["proposal"] = response
     return JSONResponse(content="file successfully uploaded", status_code=200)

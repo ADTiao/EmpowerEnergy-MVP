@@ -2,18 +2,14 @@ from fastapi import APIRouter
 from pydantic import BaseModel
 from typing import Union
 from backend.info import info as final
+from fastapi.responses import JSONResponse
+from fastapi import Request
 
 router = APIRouter()
 
-class info(BaseModel):
-    category : str
-    metric : str
-    weight : Union[float, int]
-
 @router.post("/weights")
-def process_weights(data : info):
+async def process_weights(request: Request):
     part = "weights"
-    category = data.category
-    name = data.metric
-    weight = data.weight
-    final.setdefault(part, {}).setdefault(category, {})[name] = weight
+    weights = await request.json()
+    final[part] = weights
+    return JSONResponse(content="weights processed", status_code=200)

@@ -8,16 +8,12 @@ function UploadForm() {
         form.append("file", file)
         // send request
         try {
-          const response = await fetch("https://localhost:8000", {
+          const response = await fetch("http://localhost:8000/upload_file", {
           method : "POST",
           body : form
           });
           if (!response.ok){
-            throw new Error("response not properly registered")
-          }
-          const data = response.json()
-          if (!data.message) {
-            throw new Error("Response not parsed properly")
+            throw new Error("response not registered -- api failed")
           }
         } catch (error) {
           console.error("Something went wrong: ", error)
@@ -26,11 +22,12 @@ function UploadForm() {
     
     return (
       <div>
-        <h1> Upload Proposal Here </h1>
         <input type="file" onChange={function(event) {
             setFile(event.target.files[0])
         }}/>
-        <button onClick={function() {send_file(file)}}>Confirm</button>
+        <button onClick={ function () {
+          send_file(file)} }
+          >Confirm</button>
       </div>
     )
   }

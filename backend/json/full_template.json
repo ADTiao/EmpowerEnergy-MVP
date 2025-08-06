@@ -119,7 +119,7 @@
     },
   
     "timeline": {
-      "dur": {
+      "duration": {
         "instruction": "Calculate the duration of the project in days by subtracting the start date from the end date.",
         "type": "int"
       }
