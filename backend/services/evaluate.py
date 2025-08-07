@@ -1,3 +1,5 @@
+import math
+
 # ----------- HELPERS --------------
 help_dict = {
     "carbon": "range",
@@ -173,13 +175,14 @@ def evaluate_whole(final : dict, impact_weights : dict, finance_weights : dict,
             cat_scores.setdefault(categ, 0)
             if category[metric]:
                 weights = weights_helper(categ, impact_weights, finance_weights, dev_weights, tech_weights, timeline_weights)
-                cat_scores[categ] += weights[metric]
+                cat_scores[categ] += weights.get(metric, 0.0)
     for category in categ_weights:
         score += cat_scores[category] * categ_weights[category]
     score = score * 100
     for key in cat_scores:
         cat_scores[key] *= 100
-    return score, cat_scores, feed
+        cat_scores[key] = math.trunc(cat_scores[key])
+    return math.trunc(score), cat_scores, feed
 
 def main(metrics, impact_crit, finance_crit, dev_crit, tech_crit, timeline_crit, impact_weight,
          finance_weight, dev_weight, tech_weight, timeline_weight, categ_weight):
@@ -247,9 +250,6 @@ if __name__ == "__main__":
 
     eval = main(example_metrics, mock_impact, mock_finance, mock_dev, mock_tech, mock_timeline, mock_impact_weights,
          mock_finance_weights, mock_dev_weights, mock_tech_weights, mock_timeline_weights, mock_categ_weights)
-
-    print(eval)
-
 
 
     

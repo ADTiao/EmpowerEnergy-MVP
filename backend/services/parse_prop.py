@@ -3,6 +3,7 @@ import pdfplumber # type: ignore
 import json
 import requests
 import os
+import httpx
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -22,9 +23,9 @@ def extract_text(filepath):
         final_form = json.dumps(dict)
     return final_form
 
-async def api_call(file):
+async def api_call(filepath : str) -> dict:
     key = os.getenv("OPEN_API_KEY")
-    text = extract_text(file)
+    text = extract_text(filepath)
     file_dir = os.path.dirname(__file__)
     response_path = os.path.join(file_dir, '..', "json/full_template.json")
     with open(response_path, "r") as f:
@@ -86,13 +87,25 @@ Return a valid JSON object only. Do not include any introductory text, explanati
             }
         ]
     }
-    answer = requests.post(url, headers=headers, json=data)
+    
+    async with httpx.AsyncClient(timeout=60.0) as client:
+        r = await client.post(url, headers=headers, json=data)
+        r.raise_for_status()
+        raw = r.json()["choices"][0]["message"]["content"]
 
-    response = answer.json()["choices"][0]["message"]["content"]
-    print(response)
-    response = json.loads(response)
+    # 5. parse & return
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Failed to parse JSON:\n{e}\n\nRaw output:\n{raw}")
 
-    return response
+    # answer = requests.post(url, headers=headers, json=data)
+
+    # response = answer.json()["choices"][0]["message"]["content"]
+    # print(response)
+    # response = json.loads(response)
+
+    # return response
     
 if __name__ == "__main__":
     dir = os.path.dirname(__file__)

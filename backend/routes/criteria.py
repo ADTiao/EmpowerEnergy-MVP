@@ -4,9 +4,9 @@ router = APIRouter()
 from backend.info import info as final
 
 @router.post("/criteria")
-def receive_criteria(request: Request):
+async def receive_criteria(request: Request):
     part = "criteria"
-    criteria = request.json()
+    criteria = await request.json()
     final[part] = criteria
     return JSONResponse("information registered!")
 

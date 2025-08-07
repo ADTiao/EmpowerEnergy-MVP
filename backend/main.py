@@ -8,15 +8,15 @@ from backend.routes import scores
 app = FastAPI()
 
 origins = [
-    "http://localhost:5173",
+    "http://localhost:5173",  # React dev server
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],          # explicit list only
-    allow_credentials=False,         # only if you really need cookies/auth
-    allow_methods=["*"],            # GET, POST, etc.
-    allow_headers=["*"],            # Content-Type, Authorization, etc.
+    allow_origins=origins,         # or ["*"] (see note below)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # then mount your routers…

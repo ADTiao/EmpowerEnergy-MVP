@@ -62,6 +62,8 @@ def analyze(final):
         "feed" : feedback
     }
 
+    # print("Returning output from analyze:", output[:5])
+
     return output
 
 if __name__ == "__main__":

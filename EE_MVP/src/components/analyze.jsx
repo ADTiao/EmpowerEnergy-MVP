@@ -20,24 +20,33 @@ function GetScores() {
             }
             const json = await response.json();
             setData(json);
+            console.log(data)
         } catch (err) {
             setError(err.message);
         }
     }
 
     function ScoreCircle({ label, value }) {
+        let color = "#3e98c7";  // default blue
+    
+        if (value <= 20) color = "#f44336";         // red
+        else if (value <= 49) color = "#ff9800";    // orange
+        else if (value <= 69) color = "#ffeb3b";    // yellow
+        else if (value <= 89) color = "#8bc34a";    // light green
+        else color = "#4caf50";                     // green
+    
         return (
             <div style={{ width: 100, margin: '10px', textAlign: 'center' }}>
                 <CircularProgressbar
                     value={value}
                     text={`${value}%`}
                     styles={buildStyles({
-                        textColor: '#000',
-                        pathColor: '#3e98c7',
-                        trailColor: '#eee',
+                        textColor: '#fff',
+                        pathColor: color,
+                        trailColor: '#444',
                     })}
                 />
-                <p>{label}</p>
+                <p style={{ color: '#fff' }}>{label}</p>
             </div>
         );
     }
@@ -59,7 +68,7 @@ function GetScores() {
                     </div>
                     <div style={{ marginTop: '20px' }}>
                         <p><strong>Feedback:</strong></p>
-                        <p>{data.feed}</p>
+                        <pre>{JSON.stringify(data.feed, null, 2)}</pre>
                     </div>
                 </div>
             )}
