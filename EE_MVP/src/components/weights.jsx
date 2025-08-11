@@ -25,7 +25,7 @@ function Dropdown({ infoRef, category, metric, init }) {
       infoRef.current[category] = {};
     }
     infoRef.current[category][metric] = weight;
-  }, [weight, category, metric, infoRef]);
+  }, [weight]);
   return (
   <div>
     <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -33,7 +33,7 @@ function Dropdown({ infoRef, category, metric, init }) {
       <select value={weight} onChange={function (event) {
         setWeight(parseFloat(event.target.value))
       }}>
-        {[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1].map(function (val) {
+        {[0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1].map(function (val) {
           return (
             <option key={val} value={val}>
               {val}
