@@ -13,10 +13,9 @@ function InfoBox({ title, flags }) {
         p={4}
         m={2}
         boxShadow="md"
-        bg="black"
-        color="white"           // make text readable on black
+        bg="gray.200"
       >
-        <Heading size="md">{title}</Heading>
+        <h3 textAlign="left" size="md">{title}</h3>
         <Box mt={2}>{flags}</Box>   {/* NOT <Text> — avoids <p> inside <p> */}
       </Box>
     );
@@ -48,7 +47,7 @@ function GetScores() {
           <>
             {Object.entries(feed_info).map(([key, feedback]) => {
               const flags = Object.entries(feedback).map(([metric, info], index) => (
-                <Text key={index}>{index + 1}: {info}</Text>
+                <Text textAlign="left" key={index}>{index + 1}: {info}</Text>
               ));
               return <InfoBox key={key} title={key} flags={flags} />;
             })}
@@ -97,7 +96,7 @@ function GetScores() {
                         <ScoreCircle label="Timeline" value={data.timeline} />
                     </div>
                     <div style={{ marginTop: '20px' }}>
-                        <p><strong>FLAGS:</strong></p>
+                        <Heading><strong>FLAGS:</strong></Heading>
                         <FeedBoxes feed_info={data.feed}/>
                     </div>
                 </div>
