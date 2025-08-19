@@ -15,7 +15,7 @@ async function handleCrit(infoRef) {
     }
 }
 
-function CritRange({infoRef, category, metric, def}) {
+function CritRange({infoRef, category, metric, def, label}) {
     const [min, setMin] = useState(def[0])
     const [max, setMax] = useState(def[1])
     useEffect(function() {
@@ -27,7 +27,7 @@ function CritRange({infoRef, category, metric, def}) {
 
     return(
     <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <p>Please select the criteria for {metric}</p>
+        <p>Please select the criteria for {label}</p>
         <div style = {{ display: "flex", alignItems: "center", gap: "8px"}}>
             <input type="number" value={min} onChange={function(event) {
                 setMin(Number(event.target.value))
@@ -40,7 +40,7 @@ function CritRange({infoRef, category, metric, def}) {
     )
 }
 
-function CritBool({infoRef, category, metric, def}) {
+function CritBool({infoRef, category, metric, def, label}) {
     const [isChecked, setChecked] = useState(def)
     useEffect(function() {
         if (!infoRef.current[category]) {
@@ -51,7 +51,7 @@ function CritBool({infoRef, category, metric, def}) {
 
     return (
     <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-        <p>Please select the criteria for {metric}</p>
+        <p>Please select the criteria for {label}</p>
         <input type="checkbox" checked={isChecked} onChange={function (event) {
             setChecked(event.target.value)
         }}/>
@@ -59,7 +59,7 @@ function CritBool({infoRef, category, metric, def}) {
     )
 }
 
-function CritStr({infoRef, category, metric, def}) {
+function CritStr({infoRef, category, metric, def, label}) {
     const [str, setStr] = useState(def)
     useEffect(function() {
         if (!infoRef.current[category]) {
@@ -70,7 +70,7 @@ function CritStr({infoRef, category, metric, def}) {
 
     return (
         <div style = {{ display : "flex", alignItems: "center", gap: "10px" }}>
-            <p>Please select the criteria for {metric}</p>
+            <p>Please select the criteria for {label}</p>
             <input type="text" value={str} onChange={function (e) {
                 setStr(e.target.value)
             }}/>
@@ -78,7 +78,7 @@ function CritStr({infoRef, category, metric, def}) {
     )
 }
 
-function CritInt({infoRef, category, metric, def}) {
+function CritInt({infoRef, category, metric, def, label}) {
     const [thresh, setThresh] = useState(def)
     useEffect(function() {
         if (!infoRef.current[category]) {
@@ -89,7 +89,7 @@ function CritInt({infoRef, category, metric, def}) {
 
     return (
         <div style = {{ display : "flex", alignItems: "center", gap: "10px" }}>
-            <p>Please select the criteria for {metric}</p>
+            <p>Please select the criteria for {label}</p>
             <input type="number" value={thresh} onChange={function (event) {
                 setThresh(Number(event.target.value))
             }}/>
@@ -138,16 +138,16 @@ function CreateCritOptions({metrics}) {
     // helper function -- directs which metrics will use which eval system
     function chooseType(metric) {
         if (metric.type == "bool") {
-            return <CritBool infoRef={infoRef} category={metric.category} metric={metric.name} def={setVals[metric.name]}/>
+            return <CritBool infoRef={infoRef} category={metric.category} metric={metric.name} def={setVals[metric.name]} label={metric.label}/>
         }
         else if (metric.type == "range") {
-            return <CritRange infoRef={infoRef} category={metric.category} metric={metric.name} def={setVals[metric.name]}/>
+            return <CritRange infoRef={infoRef} category={metric.category} metric={metric.name} def={setVals[metric.name]} label={metric.label}/>
         }
         else if (metric.type == "int") {
-            return <CritInt infoRef={infoRef} category={metric.category} metric={metric.name} def={setVals[metric.name]}/>
+            return <CritInt infoRef={infoRef} category={metric.category} metric={metric.name} def={setVals[metric.name]} label={metric.label}/>
         }
         else if (metric.type == "string") {
-            return <CritStr infoRef={infoRef} category={metric.category} metric={metric.name} def={setVals[metric.name]}/>
+            return <CritStr infoRef={infoRef} category={metric.category} metric={metric.name} def={setVals[metric.name]} label={metric.label}/>
         }
         else return null
     }

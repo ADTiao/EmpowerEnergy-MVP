@@ -1,6 +1,26 @@
 import React, { useState } from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { Box, Heading, Text } from "@chakra-ui/react";
+
+
+
+function InfoBox({ title, flags }) {
+    return (
+      <Box
+        borderWidth="1px"
+        borderRadius="lg"
+        p={4}
+        m={2}
+        boxShadow="md"
+        bg="black"
+        color="white"           // make text readable on black
+      >
+        <Heading size="md">{title}</Heading>
+        <Box mt={2}>{flags}</Box>   {/* NOT <Text> — avoids <p> inside <p> */}
+      </Box>
+    );
+  }
 
 function GetScores() {
     const [data, setData] = useState(null);
@@ -10,9 +30,6 @@ function GetScores() {
         try {
             const response = await fetch("http://localhost:8000/analyze", {
                 method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
             });
 
             if (!response.ok) {
@@ -25,6 +42,19 @@ function GetScores() {
             setError(err.message);
         }
     }
+    
+    function FeedBoxes({ feed_info }) {
+        return (
+          <>
+            {Object.entries(feed_info).map(([key, feedback]) => {
+              const flags = Object.entries(feedback).map(([metric, info], index) => (
+                <Text key={index}>{index + 1}: {info}</Text>
+              ));
+              return <InfoBox key={key} title={key} flags={flags} />;
+            })}
+          </>
+        );
+      }
 
     function ScoreCircle({ label, value }) {
         let color = "#3e98c7";  // default blue
@@ -62,13 +92,13 @@ function GetScores() {
                         <ScoreCircle label="Overall" value={data.overall} />
                         <ScoreCircle label="Impact" value={data.impact} />
                         <ScoreCircle label="Finance" value={data.finance} />
-                        <ScoreCircle label="Local Dev" value={data.dev} />
+                        <ScoreCircle label="Local Economic Development" value={data.dev} />
                         <ScoreCircle label="Technical" value={data.tech} />
                         <ScoreCircle label="Timeline" value={data.timeline} />
                     </div>
                     <div style={{ marginTop: '20px' }}>
-                        <p><strong>Feedback:</strong></p>
-                        <pre>{JSON.stringify(data.feed, null, 2)}</pre>
+                        <p><strong>FLAGS:</strong></p>
+                        <FeedBoxes feed_info={data.feed}/>
                     </div>
                 </div>
             )}

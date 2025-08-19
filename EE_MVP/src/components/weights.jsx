@@ -18,7 +18,7 @@ async function handleWeight(weights){
 }
 
 // Dropdown component
-function Dropdown({ infoRef, category, metric, init }) {
+function Dropdown({ infoRef, category, metric, label, init }) {
   const [weight, setWeight] = useState(init)  
   useEffect(function () {
     if (!infoRef.current[category]) {
@@ -29,7 +29,7 @@ function Dropdown({ infoRef, category, metric, init }) {
   return (
   <div>
     <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-      <p>Please select the desired weight for {metric}</p>
+      <p>Please select the desired weight for {label}</p>
       <select value={weight} onChange={function (event) {
         setWeight(parseFloat(event.target.value))
       }}>
@@ -104,6 +104,7 @@ function CreateDropdown({ weights }) {
               infoRef={infoRef}
               category={weight.category}
               metric={weight.name}
+              label={weight.label}
               init={setWeights[weight.name]}
             />
           );

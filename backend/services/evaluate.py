@@ -24,26 +24,26 @@ help_dict = {
     "duration": "range"
 }
 label_dict = {
-    "carbon": "carbon emissions avoided",
-    "connections": "connections",
-    "women_consideration": "women considered in project development",
-    "track_women": "mechanisms to moniter women's progress",
-    "w_comm_prog": "female community programs",
-    "pue": "PUEs",
-    "econ_focus": "economic partnerships",
+    "carbon": "# of carbon emissions avoided",
+    "connections": "# of connections",
+    "women_consideration": "sufficiently consider women in project development",
+    "track_women": "# of mechanisms to moniter women's progress",
+    "w_comm_prog": "# of female community programs",
+    "pue": "# of PUEs",
+    "econ_focus": "# of economic partnerships",
     "capex": "CAPEX",
     "opex": "OPEX",
     "cpc": "CPC",
     "lev_ratio": "leverage ratio",
     "tariff": "tariff cost",
-    "lcoe": "lcoe",
+    "lcoe": "LCOE",
     "requested_funds": "requested funds",
     "per_local_tech": "percent of local technicians",
-    "scalable": "a scalable project",
+    "scalable": "scalable",
     "solution": "energy solution",
-    "monitering": "a remote monitering system",
-    "backup": "backup generation",
-    "duration": "duration"
+    "monitering": "use a remote monitering system",
+    "backup": "supported by a backup generation system",
+    "duration": "project duration"
     }
 example_metrics = {
     "general": {
@@ -97,22 +97,22 @@ def lesser(final : dict, categ : str, sub : str, metric, criteria, feed : dict):
     val = metric <= criteria
     final.setdefault(categ, {})[sub] = val
     if val == False:
-        feed.setdefault(categ, {})[sub] = f"Your {label_dict[sub]} is too high"
+        feed.setdefault(categ, {})[sub] = f"The project's {label_dict[sub]} is too high"
 def greater(final : dict, categ : str, sub : str, metric, criteria, feed : dict):
     val = metric >= criteria
     final.setdefault(categ, {})[sub] = val
     if val == False:
-        feed.setdefault(categ, {})[sub] = f"Your {label_dict[sub]} underperforms expectations"
+        feed.setdefault(categ, {})[sub] = f"The project's {label_dict[sub]} underperforms expectations"
 def range(final : dict, categ : str, sub : str, metric, low, high, feed : dict):
     val = (metric > low and metric < high)
     final.setdefault(categ, {})[sub] = val
     if val == False:
-        feed.setdefault(categ, {})[sub] = f"Your {label_dict[sub]} does not lie inside of the expected range"
+        feed.setdefault(categ, {})[sub] = f"The project's {label_dict[sub]} does not lie inside of the expected range"
 def bool_string(final : dict, categ : str, sub : str, metric, criteria, feed : dict):
     val = metric == criteria
     final.setdefault(categ, {})[sub] = val
     if val == False:
-        feed.setdefault(categ, {})[sub] = f"Your {label_dict[sub]} should not be used for this type of project"
+        feed.setdefault(categ, {})[sub] = f"The project's {label_dict[sub]} should not be used for this type of project"
 
 # will likely add more -- maybe some that have an api call
 
@@ -135,7 +135,7 @@ def evaluate_category(metrics : dict, category: str, criteria : dict, feed : dic
         if metric == None:
             final.setdefault(category, {})[key] = None
             final[category][key] = None
-            feed.setdefault(category, {})[key] = f"The {label} is not included in your proposal"
+            feed.setdefault(category, {})[key] = f"The project's {label} is not included in your proposal"
         elif help_dict[key] == "range":
             range(final, category, key, metric, criteria[key][0], criteria[key][1], feed)
         elif help_dict[key] == "greater":
@@ -147,7 +147,7 @@ def evaluate_category(metrics : dict, category: str, criteria : dict, feed : dic
         elif help_dict[key] == "bool":
             final.setdefault(category, {})[key] = metric
             if metric == False:
-                feed.setdefault(category, {})[key] = f"Your proposal does not seem to be {label}"
+                feed.setdefault(category, {})[key] = f"The project is not {label}"
 
 # Input: final dictionary with True or Falses, Weighting dictionary
 # Output: Final score and dictionary of scores per category
@@ -250,48 +250,3 @@ if __name__ == "__main__":
 
     eval = main(example_metrics, mock_impact, mock_finance, mock_dev, mock_tech, mock_timeline, mock_impact_weights,
          mock_finance_weights, mock_dev_weights, mock_tech_weights, mock_timeline_weights, mock_categ_weights)
-
-
-    
-    
-
-
-# sub_weights = {
-    #     "impact": {
-    #         "carbon": 1,
-    #         "connections": 1,
-    #         "women_consideration": 1,
-    #         "track_women": 1,
-    #         "w_comm_prog": 1,
-    #         "pue": 1,
-    #         "econ_focus": 1,
-    #     },
-    #     "finance" : {
-    #         "capex": 1,
-    #         "opex": 1,
-    #         "cpc": 1,
-    #         "lev_ratio": 1,
-    #         "tariff": 1,
-    #         "lcoe": 1,
-    #         "requested_funds": 1,
-    #     },
-    #     "dev" : {
-    #         "per_local_tech": 1,
-    #     },
-    #     "tech" : {
-    #         "scalable": 1,
-    #     "solution": 1,
-    #         "monitering": 1,
-    #         "backup": 1,
-    #     },
-    #     "timeline" : {
-    #         "dur": 1
-    #     }
-    # }
-    # cat_weights = {
-    #     "impact" : .20,
-    #     "finance" : .20,
-    #     "dev" : .20,
-    #     "tech" : .20,
-    #     "timeline" : .20 
-    # }
